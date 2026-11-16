@@ -303,10 +303,24 @@ def move_paddle(current_y: int, direction: int, speed: int, height: int, paddle_
     That is when it reaches the limits (up or down) it stays there, so consider paddle_h and height here.
     """
     # TODO: put your code!!!!
+
+    # Calculem la nova posició vertical sumant el desplaçament (direcció * velocitat)
+    new_y = current_y + direction * speed
+
+    # Si la pala se surt per la part de dalt (coordenada menor que 0), la frenem a 0
+    if new_y < 0:
+        new_y = 0
+
+    # Si la pala se surt per la part de baix (posició + altura de la pala > altura pantalla)
+    # La deixem clavada just al límit inferior
+    if new_y > height - paddle_h:
+        new_y = height - paddle_h
+
+    # Retornem la nova posició ja corregida
+    return new_y
     
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
-    return current_y
 
 
 def move_ball(x: int, y: int, vx: int, vy: int) -> tuple[int, int]:
@@ -325,9 +339,15 @@ def move_ball(x: int, y: int, vx: int, vy: int) -> tuple[int, int]:
 
     # TODO: put your code!!!!
 
+    # Calculem la nova posició horitzontal sumant la velocitat en X
+    new_x = x + vx
+    # Calculem la nova posició vertical sumant la velocitat en Y
+    new_y = y + vy
+
+    # Retornem les dues noves coordenades com a tupla (new_x, new_y)
+    return new_x, new_y
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
-    return x, y
 
 
 def collide_ball_walls(x: int, y: int, vx: int, vy: int, radius: int, width: int, height: int) -> tuple[int, int, int, int]:
@@ -350,9 +370,20 @@ def collide_ball_walls(x: int, y: int, vx: int, vy: int, radius: int, width: int
     """
     # TODO: put your code!!!!
 
+    # Comprovem si la vora superior de la pilota (y - radius) toca o passa el sostre (0)
+    if y - radius < 0:
+        y = radius      # Recol·loquem la pilota just a sota del sostre perquè no s'hi enganxi
+        vy = -vy        # Invertim la velocitat vertical perquè reboti cap avall
+
+    # Comprovem si la vora inferior de la pilota (y + radius) toca o passa el terra (height)
+    if y + radius > height:
+        y = height - radius  # Recol·loquem la pilota just a sobre del terra
+        vy = -vy             # Invertim la velocitat vertical perquè reboti cap amunt
+
+    # Retornem la posició i velocitats actualitzades (x i vx no canvien aquí)
+    return x, y, vx, vy
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
-    return x, y, vx, vy
 
 
 def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_y: int, paddle_w: int, paddle_h: int, radius: int) -> tuple[int, int, int, int, bool]:
