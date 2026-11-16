@@ -686,9 +686,9 @@ def main() -> None:
     clock = pygame.time.Clock()
 
     # Initial state (no lists or objects)
-    p1_y = (HEIGHT - paddle_h) / 2
-    p2_y = (HEIGHT - paddle_h) / 2
-    ball_x, ball_y, ball_vx, ball_vy = reset_ball(WIDTH//2, HEIGHT//2, speed_ball_x, speed_ball_y, to_right=True)
+    p1_y = (HEIGHT - PADDLE_H) / 2
+    p2_y = (HEIGHT - PADDLE_H) / 2
+    ball_x, ball_y, ball_vx, ball_vy = reset_ball(WIDTH//2, HEIGHT//2, SPEED_BALL_X, SPEED_BALL_Y, to_right=True)
 
     score_left = 0
     score_right = 0
@@ -715,16 +715,16 @@ def main() -> None:
 
 
         # 2) Update state (ONLY by calling functions)
-        p1_y = move_paddle(p1_y, direction_left, paddle_speed, HEIGHT, paddle_h)
-        p2_y = move_paddle(p2_y, direction_right, paddle_speed, HEIGHT, paddle_h)
+        p1_y = move_paddle(p1_y, direction_left, PADDLE_SPEED, HEIGHT, PADDLE_H)
+        p2_y = move_paddle(p2_y, direction_right, PADDLE_SPEED, HEIGHT, PADDLE_H)
 
         ball_x, ball_y = move_ball(ball_x, ball_y, ball_vx, ball_vy)
-        ball_x, ball_y, ball_vx, ball_vy = collide_ball_walls(ball_x, ball_y, ball_vx, ball_vy, ball_radius, WIDTH, HEIGHT)
+        ball_x, ball_y, ball_vx, ball_vy = collide_ball_walls(ball_x, ball_y, ball_vx, ball_vy, BALL_RADIUS, WIDTH, HEIGHT)
 
         # Collision with left paddle
         ball_x, ball_y, vx_tmp, vy_tmp, hit_left = collide_ball_paddle(
             ball_x, ball_y, ball_vx, ball_vy,
-            PADDLE_MARGIN, p1_y, PADDLE_W, paddle_h, ball_radius
+            PADDLE_MARGIN, p1_y, PADDLE_W, PADDLE_H, BALL_RADIUS
         )
         if hit_left:
             ball_vx, ball_vy = vx_tmp, vy_tmp
@@ -732,20 +732,20 @@ def main() -> None:
         # Collision with right paddle
         ball_x, ball_y, vx_tmp, vy_tmp, hit_right = collide_ball_paddle(
             ball_x, ball_y, ball_vx, ball_vy,
-            WIDTH - PADDLE_MARGIN - PADDLE_W, p2_y, PADDLE_W, paddle_h, ball_radius
+            WIDTH - PADDLE_MARGIN - PADDLE_W, p2_y, PADDLE_W, PADDLE_H, BALL_RADIUS
         )
         if hit_right:
             ball_vx, ball_vy = vx_tmp, vy_tmp
 
         # 3) Scoring (if ball leaves screen): reset ball
-        if ball_x < -ball_radius:
+        if ball_x < -BALL_RADIUS:
             score_right += 1
             pygame.time.wait(SERVE_PAUSE)  # short pause before re-serve
-            ball_x, ball_y, ball_vx, ball_vy = reset_ball(WIDTH//2, HEIGHT//2, speed_ball_x, speed_ball_y, to_right=True)
-        elif ball_x > WIDTH + ball_radius:
+            ball_x, ball_y, ball_vx, ball_vy = reset_ball(WIDTH//2, HEIGHT//2, SPEED_BALL_X, SPEED_BALL_Y, to_right=True)
+        elif ball_x > WIDTH + BALL_RADIUS:
             score_left += 1
             pygame.time.wait(SERVE_PAUSE)  # short pause before re-serve
-            ball_x, ball_y, ball_vx, ball_vy = reset_ball(WIDTH//2, HEIGHT//2, speed_ball_x, speed_ball_y, to_right=False)
+            ball_x, ball_y, ball_vx, ball_vy = reset_ball(WIDTH//2, HEIGHT//2, SPEED_BALL_X, SPEED_BALL_Y, to_right=False)
         
         if score_left == POINTS_END or score_right == POINTS_END:
             show_message(screen,"Game Over!",backg_col, foreg_col,2000)
@@ -753,7 +753,7 @@ def main() -> None:
 
         # 4) Render
         draw_scene(screen, ball_x, ball_y, p1_y, p2_y, score_left, score_right, 
-                   paddle_h, ball_radius, backg_col, foreg_col)
+                   PADDLE_H, BALL_RADIUS, backg_col, foreg_col)
 
         clock.tick(FPS)
 
