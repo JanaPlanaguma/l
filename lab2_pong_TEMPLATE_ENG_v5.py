@@ -725,7 +725,7 @@ def main() -> None:
 
         # Right paddle can be human or AI
         if PLAY_AGAINST_MACHINE:
-            direction_right = compute_ai_direction(ball_y, p2_y, paddle_h)
+            direction_right = compute_ai_direction(ball_y, p2_y, PADDLE_H)
         else:
             direction_right = read_player_direction(keys, KEY_UP_RIGHT, KEY_DOWN_RIGHT)
 
