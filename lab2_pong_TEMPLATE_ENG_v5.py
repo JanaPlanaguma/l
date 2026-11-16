@@ -197,12 +197,12 @@ def read_color(prompt: str) -> tuple[int, int, int]:
         g_back = read_int_in_range("Introdueix el component verd del fons: ",0,255)
         b_back = read_int_in_range("Introdueix el component blau del fons: ",0,255)
         return r_back, g_back, b_back
+    
     def read_color_elem() -> tuple[int, int, int]:
         r_elem = read_int_in_range("Introdueix el component vermell dels elements: ",0,255)
         g_elem = read_int_in_range("Introdueix el component verd dels elements: ",0,255)
         b_elem = read_int_in_range("Introdueix el component blau dels elements: ",0,255)
         return r_elem, g_elem, b_elem
-
 
 def read_int_in_range(prompt: str, low: int, high: int) -> int:
     """Ask user for an integer within [low, high]. 
@@ -226,6 +226,23 @@ def read_int_in_range(prompt: str, low: int, high: int) -> int:
     """
     
     # TODO: put your code!!!!
+    # Iniciem un bucle infinit que no s'aturarà fins a tenir un número vàlid
+    while True:
+        try:
+            # Mostrem el missatge a l'usuari i intentem convertir la resposta a enter
+            valor = int(input(prompt))
+
+            # Comprovem si el número introduït està dins del rang permès [low, high]
+            if low <= valor <= high:
+                return valor  # El retorn surt del bucle i entrega el valor vàlid
+            else:
+                # Si el número és massa petit o massa gran, avisem i tornem a demanar-lo
+                print("Error: el número ha d'estar entre", low, "i", high)
+
+        except ValueError:
+            # Si l'usuari escriu lletres o decimals, int() dona error i el capturem aquí
+            # Això evita que el programa es trenqui i torna a començar el bucle
+            print("Error: has d'introduir un número enter.")
 
 def read_int_in_range_w_default(prompt: str, low: int, high: int, default_val: int) -> int:
     """ Advanced/alternate more user-friendly version of read_int_in_range().
@@ -262,7 +279,30 @@ def read_int_in_range_w_default(prompt: str, low: int, high: int, default_val: i
     """
     
     # TODO: put your code!!!!
+    
+    # Iniciem un bucle infinit que no s'aturarà fins tenir una resposta vàlida
+    while True:
+        # Llegim el text que escriu l'usuari sense convertir-lo encara a número
+        entrada = input(prompt)
 
+        # Si l'usuari prem ENTER directament sense escriure res (text buit "")
+        if entrada == "":
+            return default_val  # Retornem el valor per defecte i sortim
+
+        # Si ha escrit alguna cosa, intentem convertir-ho a número enter
+        try:
+            valor = int(entrada)
+
+            # Comprovem si el número està dins dels límits [low, high]
+            if low <= valor <= high:
+                return valor  # Si és correcte, el retornem
+            else:
+                # Si surt del rang, avisem i tornem a començar el bucle
+                print("Error: el número ha d'estar entre", low, "i", high)
+
+        except ValueError:
+            # Si ha escrit lletres o decimals, capturem l'error perquè no peti el programa
+            print("Error: has d'introduir un número enter o prémer ENTER.")
 
 def ask_yes_no(prompt: str) -> bool:
     """ Ask the user a yes/no question and return the corresponding Boolean value.
