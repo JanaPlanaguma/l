@@ -332,8 +332,7 @@ def ask_yes_no(prompt: str) -> bool:
     - Return only after receiving a valid input; do not stop the program with errors.
     """
     # TODO: put your code!!!!
-
-  resultat = None
+  resultat = False
   while resultat!=True and resultat!=False:
     resposta = input(str("Vols canviar els colors? (si/no) "))
     resposta = str.lower(resposta)
@@ -345,7 +344,7 @@ def ask_yes_no(prompt: str) -> bool:
     else:
       print("Respon amb si o no")
 
-  return resultat
+    return resultat
 
 print(ask_yes_no())
 # ================================
