@@ -346,7 +346,6 @@ def ask_yes_no(prompt: str) -> bool:
 
     return resultat
 
-print(ask_yes_no())
 # ================================
 # Functions to complete: main game
 # ================================
@@ -674,7 +673,7 @@ def show_message(screen: pygame.Surface,message: str,backg_col, foreg_col, show_
 # =================================
 
 def main() -> None:
-    paddle_h, paddle_speed, speed_ball_x, speed_ball_y, ball_radius = get_config()
+    PADDLE_H, PADDLE_SPEED, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS = get_config()
     backg_col, foreg_col = change_colors()
 
     pygame.init()
