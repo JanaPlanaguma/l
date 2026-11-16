@@ -154,6 +154,7 @@ def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
 
     # TODO: put your code!!!!
 
+#FALTA EXERCICI 2
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
     return BLACK, WHITE
@@ -192,27 +193,16 @@ def read_color(prompt: str) -> tuple[int, int, int]:
     print("Se't demanaran valors pels components de cada color del fons i pels elements (dona un enter entre el 0 i el 255)")
 
     def read_color_back() -> tuple[int, int, int]:
-        r_back = int(input("Introdueix el component vermell del fons: "))
-        g_back = int(input("Introdueix el component verd del fons: "))
-        b_back = int(input("Introdueix el component blau del fons: "))
-        if 0<=r_back<=255 and 0<=g_back<=255 and 0<=b_back<=255:
-            return r_back, g_back, b_back
-        else:
-            return None
-
+        r_back = read_int_in_range("Introdueix el component vermell del fons: ",0,255)
+        g_back = read_int_in_range("Introdueix el component verd del fons: ",0,255)
+        b_back = read_int_in_range("Introdueix el component blau del fons: ",0,255)
+        return r_back, g_back, b_back
     def read_color_elem() -> tuple[int, int, int]:
-        r_elem = int(input("Introdueix el component vermell dels elements: "))
-        g_elem = int(input("Introdueix el component verd dels elements: "))
-        b_elem = int(input("Introdueix el component blau dels elements: "))
-        if 0<=r_elem<=255 and 0<=g_elem<=255 and 0<=b_elem<=255:
-            return r_elem, g_elem, b_elem
-        else:
-            return None
+        r_elem = read_int_in_range("Introdueix el component vermell dels elements: ",0,255)
+        g_elem = read_int_in_range("Introdueix el component verd dels elements: ",0,255)
+        b_elem = read_int_in_range("Introdueix el component blau dels elements: ",0,255)
+        return r_elem, g_elem, b_elem
 
-print(read_color_back())
-print(read_color_elem())
-    
-    # return r, g, b
 
 def read_int_in_range(prompt: str, low: int, high: int) -> int:
     """Ask user for an integer within [low, high]. 
