@@ -601,9 +601,16 @@ def compute_ai_direction(ball_y: int, paddle_y: int, paddle_h: int) -> int:
     """
     # TODO: put your code!!!!
 
+    paddle_center = paddle_y + (paddle_h/2)
+    #20 és la tolerància que hem decidit posar perquè el paddle no vibri
+    if ball_y>paddle_center + 20:
+        return +1
+    elif ball_y + 20 <paddle_center:
+        return -1
+    else:
+        return 0
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
-    return 0
 
 # =============================================
 # Checking KEYS UP/DOWN (given to the students)
