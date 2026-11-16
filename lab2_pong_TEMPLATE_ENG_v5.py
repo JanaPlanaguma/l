@@ -108,19 +108,26 @@ def get_config() -> tuple[int, int, int, int, int]:
 
     # TODO: put your code!!!!
 
-  ask_yes_no= input("Vols canviar els paràmetres del joc? (si/no): ")
-  if ask_yes_no == "si" or ask_yes_no == "SI":
-    PADDLE_H = read_int_in_range("Introdueix l'altura del paddle(60-160): ",60,160)
-    SPEED_PADDLE = read_int_in_range("Introdueix la velocitat del paddle(4-12): ", 4,12)
-    SPEED_BALL_X = read_int_in_range("Introdueix la velocitat horitzontal de la pilota(4-10): ",4,10)
-    SPEED_BALL_Y = read_int_in_range("Introdueix la velocitat vertical de la pilota(2-8): ",2,8)
-    BALL_RADIUS = read_int_in_range("Introdueix el radi de la pilota (5-15): ",5,15)
+    ask_yes_no= input("Vols canviar els paràmetres del joc? (si/no): ")
+    if ask_yes_no == "si" or ask_yes_no == "SI":
+        PADDLE_H = read_int_in_range("Introdueix l'altura del paddle(60-160): ",60,160)
+        SPEED_PADDLE = read_int_in_range("Introdueix la velocitat del paddle(4-12): ", 4,12)
+        SPEED_BALL_X = read_int_in_range("Introdueix la velocitat horitzontal de la pilota(4-10): ",4,10)
+        SPEED_BALL_Y = read_int_in_range("Introdueix la velocitat vertical de la pilota(2-8): ",2,8)
+        BALL_RADIUS = read_int_in_range("Introdueix el radi de la pilota (5-15): ",5,15)
+    else:
+        PADDLE_H = 110
+        SPEED_PADDLE = 7
+        SPEED_BALL_X = 6
+        SPEED_BALL_Y = 5
+        BALL_RADIUS = 9
 
     return PADDLE_H, SPEED_PADDLE, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS 
 
     # This line of code has been left for letting the full program work
     # It corresponds to the user answering NO to changing any default values 
     # You will need to eliminate it when adding your code
+    
 def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
     """ Ask the user if they want to modify the game colors (background and foreground).
 
