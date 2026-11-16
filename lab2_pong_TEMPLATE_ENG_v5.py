@@ -177,6 +177,7 @@ def read_color(prompt: str) -> tuple[int, int, int]:
 
 print(read_color_back())
 print(read_color_elem())
+    
     # return r, g, b
 
 def read_int_in_range(prompt: str, low: int, high: int) -> int:
@@ -268,6 +269,21 @@ def ask_yes_no(prompt: str) -> bool:
     """
     # TODO: put your code!!!!
 
+  resultat = None
+  while resultat!=True and resultat!=False:
+    resposta = input(str("Vols canviar els colors? (si/no) "))
+    resposta = str.lower(resposta)
+
+    if resposta == "si" or resposta == "s":
+      resultat = True
+    elif resposta == "no" or resposta == "n":
+      resultat = False
+    else:
+      print("Respon amb si o no")
+
+  return resultat
+
+print(ask_yes_no())
 # ================================
 # Functions to complete: main game
 # ================================
