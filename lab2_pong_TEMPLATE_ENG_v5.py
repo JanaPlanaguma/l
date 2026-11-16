@@ -436,7 +436,29 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
       which is sufficient for this game.
     """
     # TODO: put your code!!!!
+        #definim els límits de la pilota (a partir de x i y) i del paddle (a partir de paddle_y i paddle_x)
+    ball_left = x - radius 
+    ball_right = x + radius
+    ball_top = y - radius
+    ball_bottom = y + radius
+
+    paddle_left = paddle_x
+    paddle_right = paddle_x + paddle_w
+    paddle_top = paddle_y
+    paddle_bottom = paddle_y + paddle_h
+
     hit = False
+    if ball_left<=paddle_right and ball_right>=paddle_left and ball_bottom>=paddle_top and ball_top<=paddle_bottom:
+      hit = True 
+    
+    if hit == True:
+      vx = - vx
+
+      if x < 400: #manera per detectar si ha xocat amb el paddle de la dreta o de l'esquerra
+        x = paddle_right + radius
+      
+      else:
+        x = paddle_left - radius
 
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
