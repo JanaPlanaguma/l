@@ -154,6 +154,29 @@ def read_color(prompt: str) -> tuple[int, int, int]:
     """ 
 
     # TODO: put your code!!!!
+
+    print("Se't demanaran valors pels components de cada color del fons i pels elements (dona un enter entre el 0 i el 255)")
+
+    def read_color_back() -> tuple[int, int, int]:
+        r_back = int(input("Introdueix el component vermell del fons: "))
+        g_back = int(input("Introdueix el component verd del fons: "))
+        b_back = int(input("Introdueix el component blau del fons: "))
+        if 0<=r_back<=255 and 0<=g_back<=255 and 0<=b_back<=255:
+            return r_back, g_back, b_back
+        else:
+            return None
+
+    def read_color_elem() -> tuple[int, int, int]:
+        r_elem = int(input("Introdueix el component vermell dels elements: "))
+        g_elem = int(input("Introdueix el component verd dels elements: "))
+        b_elem = int(input("Introdueix el component blau dels elements: "))
+        if 0<=r_elem<=255 and 0<=g_elem<=255 and 0<=b_elem<=255:
+            return r_elem, g_elem, b_elem
+        else:
+            return None
+
+print(read_color_back())
+print(read_color_elem())
     # return r, g, b
 
 def read_int_in_range(prompt: str, low: int, high: int) -> int:
