@@ -157,8 +157,25 @@ def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
     """
 
     # TODO: put your code!!!!
+def read_color(prompt: str) -> tuple[int, int, int]:
+    "Crea un color RGB amb els valors que diu el usuari"
+    print("Se't demanaran valors pels components del color de", prompt, "(dona un enter entre el 0 i el 255)")
+    r = read_int_in_range("Introdueix el component vermell: ", 0, 255)
+    g = read_int_in_range("Introdueix el component verd: ", 0, 255)
+    b = read_int_in_range("Introdueix el component blau: ", 0, 255)
+    return r, g, b
 
-#FALTA EXERCICI 2
+def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
+    ask_color = input("Vols canviar els colors del joc? (si/no): ")# Preguntem a l'usuari si vol modificar els colors del joc
+
+    if ask_color=="si" or ask_color=="SI":
+        # Si respon que sí, utilitzem 
+        color_fons = read_color("fons")
+        color_primer_pla = read_color("elements")
+        return color_fons, color_primer_pla
+
+    # Si l'usuari respon que no, retornem els colors per defecte (negre i blanc)
+    return BLACK, WHITE
     # This line of code has been left for letting the full program work
     # You will need to eliminate it when adding your code
     return BLACK, WHITE
@@ -669,7 +686,6 @@ def show_message(screen: pygame.Surface,message: str,backg_col, foreg_col, show_
 
     # Pause for show_time_ms milliseconds so players can see it
     pygame.time.wait(show_time_ms)
-
 
 
 # =================================
